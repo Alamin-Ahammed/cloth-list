@@ -91,7 +91,6 @@ const FormData = () => {
 
   // saving in local-storage after form submit
   useEffect(() => {
-    console.log(products)
     localStorage.setItem('products', JSON.stringify(products));
   }, [products]);
   
