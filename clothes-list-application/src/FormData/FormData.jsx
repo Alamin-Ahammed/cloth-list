@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useProducts } from "../Context/FormDataContext";
+import './FormData.css';
 
 const FormData = () => {
   const { products, updateProducts } = useProducts();
@@ -59,7 +60,7 @@ const FormData = () => {
     }
     // checking quantity and price is ok or not 
     const {quantity,price,clothId} = newformData;
-    if ( quantity > 200 && quantity < 0) {
+    if ( quantity > 200 || quantity < 0) {
       isVaildValue = false;
       alert("Quantity should be less than 200 but upper than 0");
     }else if ( price < 0 ) {
@@ -83,9 +84,7 @@ const FormData = () => {
     //now if isvaildValue still true then add new data in products
     if (isVaildValue) {
       setFormData(newformData);
-      updateProducts(formData)
-    }else{
-      alert('something went wrong')
+      updateProducts(prev => [...prev,formData])
     }
   };
 
@@ -96,7 +95,7 @@ const FormData = () => {
   
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="clothName">Cloth Name</label>

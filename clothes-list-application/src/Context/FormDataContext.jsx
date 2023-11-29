@@ -11,7 +11,7 @@ const FormDataProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const updateProducts = (newData) => {
-    setProducts(prev => [...prev, newData]);
+    setProducts(newData);
   };
   return (
     <FormDataContext.Provider value={{ products, updateProducts }}>
