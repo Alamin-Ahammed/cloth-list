@@ -1,16 +1,21 @@
 // ClothTable.jsx
 
-import React from "react";
+import React, { useEffect } from "react";
 import ClothRow from "./ClothRow";
 import { useProducts } from "../Context/FormDataContext";
 import "./ClothTable.css";
 const ClothTable = () => {
-  const { products } = useProducts();
+  const { products , updateProducts } = useProducts();
+  const handleRemovAll = () => {
+    alert("Are you sure you want to remove all products?");
+    updateProducts([]);
+    localStorage.setItem("products", JSON.stringify([]));
+  }
   return (
     <div className="ClothTable-container">
       <div className="ClothTable-header">
         <h1>Cloth Table</h1>
-        <button className="Remove-all-button">Remove All</button>
+        <button onClick={handleRemovAll} className="Remove-all-button">Remove All</button>
       </div>
       <table>
         <thead>
